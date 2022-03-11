@@ -1,7 +1,7 @@
-#include "main.h"
-#include <iostream>
+#include <stdio.h>
 
-int main() {
-    std::cout << "Hello World" << std::endl;
+int main(void) {
+    printf("be happy");
+
     return 0;
 }
