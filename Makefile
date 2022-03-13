@@ -23,10 +23,10 @@ TARGET = main
 # wildcard 로 SRC_DIR 에서 *.cc 로 된 파일들 목록을 뽑아낸 뒤에
 # notdir 로 파일 이름만 뽑아낸다.
 # (e.g SRCS 는 foo.cc bar.cc main.cc 가 된다.)
-SRCS = $(notdir $(wildcard $(SRC_DIR)/*.cpp))
+SRCS = $(notdir $(wildcard $(SRC_DIR)/*.c))
 
-OBJS = $(SRCS:.cpp=.o)
-DEPS = $(SRCS:.cpp=.d)
+OBJS = $(SRCS:.c=.o)
+DEPS = $(SRCS:.c=.d)
 
 # OBJS 안의 object 파일들 이름 앞에 $(OBJ_DIR)/ 을 붙인다.
 OBJECTS = $(patsubst %.o,$(OBJ_DIR)/%.o,$(OBJS))
@@ -34,7 +34,7 @@ DEPS = $(OBJECTS:.o=.d)
 
 all: main
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) $(CXXFLAGS) $(INCLUDE) -c $< -o $@ -MD $(LDFLAGS)
 
 $(TARGET) : $(OBJECTS)
